@@ -1,0 +1,98 @@
+<main>
+    <img class="sf-logo" src="/assets/sflower/images/sf_logo_arabic_color.png" />
+    <div class="sf-page-heading">
+        Invoice
+    </div>
+    <div class="row">
+        <div class="col-xs-8 sf-column">
+            <div class="col-xs-6">
+                <div class="sf-heading">Bill To</div>
+                <div class="sf-normal">{{ doc.address_display }}</div>
+            </div>
+            <div class="col-xs-6">
+                <div class="sf-heading">Delivery Address</div>
+                <div class="sf-normal">{{ doc.shipping_address }}</div>
+            </div>
+            <div class="col-xs-6 sf-column-next">
+                <div class="sf-heading">Delivery Date</div>
+                <div class="sf-normal">{{ doc.delivery_date }}</div>
+            </div>
+            <div class="col-xs-6 sf-column-next">
+                <div class="sf-heading">Delivery Time</div>
+                <div class="sf-normal">N/A</div>
+            </div>
+        </div>
+        <div class="col-xs-4 sf-column">
+            <table class="table table-condensed sf-table">
+                <tbody>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Invoice</td>
+                        <td class="sf-normal">123456</td>
+                    </tr>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Date</td>
+                        <td class="sf-normal">{{ doc.transaction_date }}</td>
+                    </tr>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Terms</td>
+                        <td class="sf-normal">Due on Receipt</td>
+                    </tr>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Due Date</td>
+                        <td class="sf-normal">{{ doc.delivery_date }}</td>
+                    </tr>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Type</td>
+                        <td class="sf-normal">{{ doc.order_type }}</td>
+                    </tr>
+                    <tr>
+                        <td class="sf-heading sf-table-heading">Quote Ref</td>
+                        <td class="sf-normal">123</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <table class="table table-condensed sf-table-items">
+        <thead>
+            <tr>
+                <th class="sf-heading">Description</th>
+                <th class="sf-heading text-center">Qty</th>
+                <th class="sf-heading text-center">Rate</th>
+                <th class="sf-heading text-center">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for item in doc.items -%}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td class="text-center">{{ item.qty }}</td>
+                <td class="text-center">{{ item.get_formatted('rate', doc) }}</td>
+                <td class="text-center">{{ item.get_formatted('amount', doc) }}</td>
+            </tr>
+            {%- endfor -%}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="sf-total-heading sf-heading text-right" colspan="3">Balance Due</td>
+                <td class="sf-total text-center">{{ doc.get_formatted('total') }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div>
+        <div class="sf-heading">
+            Terms & Conditions
+        </div>
+        <div class="sf-normal">
+            {{ doc.terms }}
+        </div>
+    </div>
+    <div class="row sf-received">
+        <div class="col-xs-6 sf-heading">
+            Received By
+        </div>
+        <div class="col-xs-6 sf-heading">
+            Received Date
+        </div>
+    </div>
+</main>
