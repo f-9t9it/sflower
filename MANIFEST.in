@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include sflower *.css
+recursive-include sflower *.csv
+recursive-include sflower *.html
+recursive-include sflower *.ico
+recursive-include sflower *.js
+recursive-include sflower *.json
+recursive-include sflower *.md
+recursive-include sflower *.png
+recursive-include sflower *.py
+recursive-include sflower *.svg
+recursive-include sflower *.txt
+recursive-exclude sflower *.pyc
