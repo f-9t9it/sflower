@@ -1,0 +1,23 @@
+{
+ "align_labels_right": 0, 
+ "creation": "2019-05-21 10:50:35.477396", 
+ "custom_format": 1, 
+ "default_print_language": "en", 
+ "disabled": 0, 
+ "doc_type": "Sales Order", 
+ "docstatus": 0, 
+ "doctype": "Print Format", 
+ "font": "Default", 
+ "html": "{% set page_width = '210mm' %}\n{% set page_height = '297mm' %}\n\n{% include \"templates/includes/pf_styles.html\" %}\n{% include \"templates/includes/sf_sales_order.html\" %}", 
+ "idx": 0, 
+ "line_breaks": 0, 
+ "modified": "2019-05-21 10:57:56.812384", 
+ "modified_by": "Administrator", 
+ "module": "Singapore Flowers", 
+ "name": "SF Sales Order", 
+ "owner": "Administrator", 
+ "print_format_builder": 0, 
+ "print_format_type": "Server", 
+ "show_section_headings": 0, 
+ "standard": "Yes"
+}

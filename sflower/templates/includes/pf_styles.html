@@ -1,0 +1,75 @@
+<style>
+    @page {
+        size: 'A4';
+        margin: 19.05mm 19.05mm 19.05mm 19.05mm;
+    }
+    @media screen {
+        .print-format {
+            width: {{ page_width }};
+            height: {{ page_height }};
+        }
+    }
+    .sf-logo {
+        width: 10cm;
+        height: 3cm;
+    }
+    .sf-page-heading {
+        font-size: 20pt;
+        text-align: right;
+        text-transform: uppercase;
+        color: rgb(155, 24, 137);
+    }
+    .sf-heading {
+        font-size: 10pt;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        text-transform: uppercase;
+        color: rgb(128, 128, 128);
+        letter-spacing: 0.25pt;
+    }
+    .sf-normal {
+        color: black;
+        font-size: 10pt;
+        text-align: justify;
+        font-family: Arial, sans-serif;
+    }
+    .sf-table {
+        margin: 0;
+    }
+    .sf-table > tbody > tr > td {
+        border: 0;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .sf-table-heading {
+        text-align: right;
+    }
+    .sf-column {
+        padding: 0;
+    }
+    .sf-column-next {
+        margin-top: 5mm;
+    }
+    .sf-table-items > tbody > tr > td {
+        border: 0;
+        padding: 2mm 0 !important;
+    }
+    .sf-table-items > thead > tr > th {
+        color: rgb(155, 24, 137);
+        background-color: rgb(234, 204, 224) !important;
+        padding: 0 0 1mm !important;
+    }
+    .sf-total {
+        color: black;
+        font-size: 12pt;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+    }
+    .sf-received {
+        margin-top: 10mm;
+    }
+    .sf-total-heading {
+        color: rgb(155, 24, 137);
+        vertical-align: middle;
+    }
+</style>
