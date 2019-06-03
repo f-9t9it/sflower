@@ -25,7 +25,8 @@ fixtures = [
                     "Sales Order Item-sf_extra",
                     "Sales Order-sf_note_1",
                     "Sales Order-sf_card",
-                    "Sales Invoice-sf_order_type"
+                    "Sales Invoice-sf_order_type",
+                    "Sales Order-sf_delivery_time"
                 ]
             ]
         ]
