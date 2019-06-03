@@ -11,6 +11,23 @@ app_color = "grey"
 app_email = "info@9t9it.com"
 app_license = "MIT"
 
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Invoice Item-sf_extra",
+                    "Sales Invoice-sf_note_1",
+                    "Sales Invoice-sf_card"
+                ]
+            ]
+        ]
+    }
+]
+
 # Includes in <head>
 # ------------------
 
