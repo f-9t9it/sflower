@@ -28,6 +28,18 @@ fixtures = [
                 ]
             ]
         ]
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Order-order_type-options"
+                ]
+            ]
+        ]
     }
 ]
 

@@ -1,0 +1,22 @@
+[
+ {
+  "_assign": null, 
+  "_comments": null, 
+  "_liked_by": null, 
+  "_user_tags": null, 
+  "default_value": null, 
+  "doc_type": "Sales Order", 
+  "docstatus": 0, 
+  "doctype": "Property Setter", 
+  "doctype_or_field": "DocField", 
+  "field_name": "order_type", 
+  "modified": "2019-06-03 20:22:16.552470", 
+  "name": "Sales Order-order_type-options", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
+  "property": "options", 
+  "property_type": "Text", 
+  "value": "\nSales\nMaintenance\nShopping Cart\nCollection\nDelivery"
+ }
+]
