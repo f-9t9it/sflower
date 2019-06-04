@@ -26,7 +26,14 @@ fixtures = [
                     "Sales Order-sf_note_1",
                     "Sales Order-sf_card",
                     "Sales Invoice-sf_order_type",
-                    "Sales Order-sf_delivery_time"
+                    "Sales Order-sf_delivery_time",
+                    "Quotation-sf_occasion",
+                    "Quotation-sf_events_section",
+                    "Quotation-sf_event_time",
+                    "Quotation-sf_set_up_time",
+                    "Quotation-sf_events_column",
+                    "Quotation-sf_breakdown_time",
+                    "Quotation-sf_quotation_description"
                 ]
             ]
         ]
