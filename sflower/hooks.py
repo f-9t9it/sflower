@@ -33,7 +33,10 @@ fixtures = [
                     "Quotation-sf_set_up_time",
                     "Quotation-sf_events_column",
                     "Quotation-sf_breakdown_time",
-                    "Quotation-sf_quotation_description"
+                    "Quotation-sf_quotation_description",
+                    "Quotation-sf_sales_type",
+                    "Sales Order-sf_sales_type",
+                    "Sales Invoice-sf_sales_type"
                 ]
             ]
         ]
