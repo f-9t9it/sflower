@@ -6,7 +6,7 @@ export default class DeliverDialog {
                 {
                     fieldname: 'test',
                     fieldtype: 'Check',
-                    label: __('Test')
+                    label: __(' Test')
                 }
             ]
         });
