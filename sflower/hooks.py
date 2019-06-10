@@ -11,6 +11,50 @@ app_color = "grey"
 app_email = "info@9t9it.com"
 app_license = "MIT"
 
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Invoice Item-sf_extra",
+                    "Sales Invoice-sf_note_1",
+                    "Sales Invoice-sf_card",
+                    "Sales Order Item-sf_extra",
+                    "Sales Order-sf_note_1",
+                    "Sales Order-sf_card",
+                    "Sales Invoice-sf_order_type",
+                    "Sales Order-sf_delivery_time",
+                    "Quotation-sf_occasion",
+                    "Quotation-sf_events_section",
+                    "Quotation-sf_event_time",
+                    "Quotation-sf_set_up_time",
+                    "Quotation-sf_events_column",
+                    "Quotation-sf_breakdown_time",
+                    "Quotation-sf_quotation_description",
+                    "Quotation-sf_sales_type",
+                    "Sales Order-sf_sales_type",
+                    "Sales Invoice-sf_sales_type"
+                ]
+            ]
+        ]
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Order-order_type-options"
+                ]
+            ]
+        ]
+    }
+]
+
 # Includes in <head>
 # ------------------
 

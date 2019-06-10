@@ -1,0 +1,51 @@
+<main>
+    <img src="/assets/sflower/images/sf_logo_arabic_black.png" />
+    <div class="text-center">TAX INVOICE</div>
+    <div class="text-center">Tel #: 1774 2456</div>
+    <div class="text-center">VAT ID: 123456789012345</div>
+    <div>Salesperson: Gwee</div>
+
+    <div>
+        <div>---------------------------------</div>
+        <div>Order: 123456 13 Apr 19 09:32AM</div>
+        <div>---------------------------------</div>
+    </div>
+
+    <div>
+        <div class="text-center">Sales Order</div>
+        <table class="table table-condensed">
+            {%- for item in doc.items -%}
+            <tr>
+                <td>{{ item.qty }} {{ item.description }}</td>
+                <td>{{ item.rate }}</td>
+            </tr>
+            {%- endfor -%}
+            <tr>
+                <td>Total Items</td>
+                <td>{{ doc.total_qty }}</td>
+            </tr>
+            <tr>
+                <td>Subtotal ({{ doc.currency }})</td>
+                <td>{{ doc.total }}</td>
+            </tr>
+            <tr>
+                <td>Payment incl. VAT</td>
+                <td>{{ doc.grand_total }}</td>
+            </tr>
+            <tr>
+                <td>Cash Paid ({{ doc.currency }})</td>
+                <td>{{ doc.paid_amount }}</td>
+            </tr>
+            <tr>
+                <td>Balance ({{ doc.currency }})</td>
+                <td>{{ doc.outstanding_amount }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div>---------------------------------</div>
+        <div class="text-center">Thank you for your business!</div>
+        <div class="text-center">Order online: www.singaporeflw.com</div>
+    </div>
+</main>
