@@ -10,7 +10,7 @@ function _render_invoice_button(frm) {
             });
         } else {
             frm.add_custom_button(__('Print Invoice'), function() {
-                console.log('Print Invoice');
+                frm.invoice_dialog && frm.invoice_dialog.print(frm);
             });
         }
     }
@@ -18,8 +18,8 @@ function _render_invoice_button(frm) {
 
 export default {
     setup: async function(frm) {
-        const { pos_mop } = await frappe.db.get_doc('SF Settings');
-        frm.invoice_dialog = new InvoiceDialog(pos_mop);
+        const { pos_mop, order_pfs } = await frappe.db.get_doc('SF Settings');
+        frm.invoice_dialog = new InvoiceDialog(pos_mop, order_pfs);
     },
     refresh: function(frm) {
         _render_invoice_button(frm);

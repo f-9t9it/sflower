@@ -1,8 +1,9 @@
 export default class InvoiceDialog {
-    constructor(pos_mop) {
+    constructor(pos_mop, print_formats = []) {
         this.mode_of_payments = [
             { mode_of_payment: pos_mop, amount: 0.00 }
         ];
+        this.print_formats = print_formats;
         this.dialog = new frappe.ui.Dialog({
             title: 'Invoice & Print',
             fields: [
@@ -52,6 +53,16 @@ export default class InvoiceDialog {
                 frm.reload_doc();
             }.bind(this)
         );
+        this.dialog.show();
+    }
+    async print(frm) {
+        const print_formats = this.print_formats;
+        this.dialog.get_primary_btn().off('click');
+        this.dialog.set_primary_action('OK', async function() {
+            const { name } = frm.doc;
+            const values = this.get_values();
+            this.hide();
+        });
         this.dialog.show();
     }
 }
