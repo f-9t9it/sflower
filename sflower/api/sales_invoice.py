@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import json
 import frappe
 from frappe.utils import nowdate, nowtime, cint
-from toolz import compose, unique, partial
+from toolz import compose, unique, partial, merge
 from erpnext.accounts.doctype.sales_invoice.sales_invoice import make_delivery_note
 
 
@@ -18,15 +18,20 @@ def deliver_qol(name, payments, deliver):
         )
         pe.insert(ignore_permissions=True)
         pe.submit()
+        return pe.name
 
-    if payments:
-        payments_list = json.loads(payments)
-        map(make_payment, payments_list)
+    make_payments = compose(partial(map, make_payment), json.loads)
+    pe_names = make_payments(payments) if payments else []
+
+    result = {'payment_entries': pe_names}
 
     if is_delivery:
         dn = make_delivery_note(name)
         dn.insert(ignore_permissions=True)
         dn.submit()
+        result = merge(result, {'delivery_note': dn.name})
+
+    return result
 
 
 def _make_payment_entry(name, mode_of_payment, paid_amount):
