@@ -1,12 +1,15 @@
 from __future__ import unicode_literals
 import json
 import frappe
-from frappe.utils import nowdate, nowtime
+from frappe.utils import nowdate, nowtime, cint
 from toolz import compose, unique, partial
+from erpnext.accounts.doctype.sales_invoice.sales_invoice import make_delivery_note
 
 
 @frappe.whitelist()
 def deliver_qol(name, payments, deliver):
+    is_delivery = cint(deliver)
+
     def make_payment(payment):
         pe = _make_payment_entry(
             name,
@@ -19,6 +22,11 @@ def deliver_qol(name, payments, deliver):
     if payments:
         payments_list = json.loads(payments)
         map(make_payment, payments_list)
+
+    if is_delivery:
+        dn = make_delivery_note(name)
+        dn.insert(ignore_permissions=True)
+        dn.submit()
 
 
 def _make_payment_entry(name, mode_of_payment, paid_amount):
