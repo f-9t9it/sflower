@@ -1,0 +1,22 @@
+[
+ {
+  "_assign": null, 
+  "_comments": null, 
+  "_liked_by": null, 
+  "_user_tags": null, 
+  "default_value": null, 
+  "doc_type": "Sales Order", 
+  "docstatus": 0, 
+  "doctype": "Property Setter", 
+  "doctype_or_field": "DocField", 
+  "field_name": "order_type", 
+  "modified": "2019-06-11 15:51:55.625445", 
+  "name": "Sales Order-order_type-hidden", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
+  "property": "hidden", 
+  "property_type": "Check", 
+  "value": "1"
+ }
+]

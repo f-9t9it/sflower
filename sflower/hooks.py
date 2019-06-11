@@ -36,7 +36,8 @@ fixtures = [
                     "Quotation-sf_quotation_description",
                     "Quotation-sf_sales_type",
                     "Sales Order-sf_sales_type",
-                    "Sales Invoice-sf_sales_type"
+                    "Sales Invoice-sf_sales_type",
+                    "Sales Order-sf_order_type"
                 ]
             ]
         ]
@@ -47,7 +48,9 @@ fixtures = [
             [
                 "name",
                 "in",
-                []
+                [
+                    "Sales Order-order_type-hidden"
+                ]
             ]
         ]
     }
