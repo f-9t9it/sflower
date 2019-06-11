@@ -16,6 +16,19 @@ function _render_invoice_button(frm) {
     }
 }
 
+function _rename_delivery_fields(frm) {
+    let date_label = "Delivery Date";
+    let time_label = "Delivery Time";
+
+    if (frm.doc.sf_order_type === "Collection") {
+        date_label = "Collection Date";
+        time_label = "Collection Time";
+    }
+
+    frm.set_df_property('delivery_date', 'label', __(date_label));
+    frm.set_df_property('sf_delivery_time', 'label', __(time_label));
+}
+
 export default {
     setup: async function(frm) {
         const { pos_mop, order_pfs } = await frappe.db.get_doc('SF Settings');
@@ -23,5 +36,8 @@ export default {
     },
     refresh: function(frm) {
         _render_invoice_button(frm);
+    },
+    sf_order_type: function(frm) {
+        _rename_delivery_fields(frm);
     }
 };
