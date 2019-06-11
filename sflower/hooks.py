@@ -47,9 +47,7 @@ fixtures = [
             [
                 "name",
                 "in",
-                [
-                    "Sales Order-order_type-options"
-                ]
+                []
             ]
         ]
     }
