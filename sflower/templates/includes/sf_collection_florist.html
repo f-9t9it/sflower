@@ -1,0 +1,26 @@
+<main>
+    <div>FLORIST DOCKET</div>
+    <div>
+        <div>---------------------------------</div>
+        <div>Order: {{ doc.name }} {{ doc.transaction_date }}</div>
+        <div>---------------------------------</div>
+        <div>Collection Order</div>
+        <div>Ordered By: {{ doc.customer_name }}</div>
+        <div>Contact: +XXX XXXX XXXX</div>
+        <div>Pick Up: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
+        <div>---------------------------------</div>
+    </div>
+    <div>
+        <table class="table table-condensed">
+            {%- for item in doc.items -%}
+            <tr>
+                <td>{{ item.qty }} {{ item.description }}</td>
+                <td>{{ item.rate }}</td>
+            </tr>
+            {%- endfor -%}
+        </table>
+    </div>
+    <div>
+        ****ORDER UNPAID****
+    </div>
+</main>

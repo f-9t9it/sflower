@@ -1,0 +1,23 @@
+{
+ "align_labels_right": 0, 
+ "creation": "2019-06-11 17:13:27.933658", 
+ "custom_format": 1, 
+ "default_print_language": "en", 
+ "disabled": 0, 
+ "doc_type": "Sales Order", 
+ "docstatus": 0, 
+ "doctype": "Print Format", 
+ "font": "Default", 
+ "html": "{% include \"templates/includes/pf_receipt_styles.html\" %}\n{% include \"templates/includes/sf_collection_florist.html\" %}", 
+ "idx": 0, 
+ "line_breaks": 0, 
+ "modified": "2019-06-11 17:13:41.182643", 
+ "modified_by": "Administrator", 
+ "module": "Singapore Flowers", 
+ "name": "SF Collection Florist", 
+ "owner": "Administrator", 
+ "print_format_builder": 0, 
+ "print_format_type": "Server", 
+ "show_section_headings": 0, 
+ "standard": "Yes"
+}
