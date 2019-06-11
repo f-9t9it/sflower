@@ -32,7 +32,8 @@ function _rename_delivery_fields(frm) {
 export default {
     setup: async function(frm) {
         const { pos_mop, order_pfs } = await frappe.db.get_doc('SF Settings');
-        frm.invoice_dialog = new InvoiceDialog(pos_mop, order_pfs);
+        const print_formats = order_pfs.map(({ print_format }) => print_format);
+        frm.invoice_dialog = new InvoiceDialog(pos_mop, print_formats);
     },
     refresh: function(frm) {
         _render_invoice_button(frm);
