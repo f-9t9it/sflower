@@ -37,7 +37,11 @@ fixtures = [
                     "Quotation-sf_sales_type",
                     "Sales Order-sf_sales_type",
                     "Sales Invoice-sf_sales_type",
-                    "Sales Order-sf_order_type"
+                    "Sales Order-sf_order_type",
+                    "Sales Order-sf_recipient_sb",
+                    "Sales Order-sf_recipient_name",
+                    "Sales Order-sf_recipient_number",
+                    "Sales Order-sf_recipient_address"
                 ]
             ]
         ]
