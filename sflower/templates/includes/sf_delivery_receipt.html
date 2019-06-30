@@ -1,0 +1,14 @@
+<main>
+    <div>--------------------------------------------------------</div>
+    <div>Order: {{ doc.name }}</div>
+    <div>--------------------------------------------------------</div>
+    <div class="sf-header text-center">Delivery Receipt</div>
+    <table class="table table-condensed sf-table sf-borderless">
+        {%- for item in doc.items -%}
+        <tr class="sf-row"><td>{{ item.qty|int }} {{ item.description }}</td></tr>
+        <tr class="sf-row sf-row-extra"><td>{{ item.sf_extra }}</td></tr>
+        {%- endfor -%}
+    </table>
+    <div>Received by:</div>
+    <div>--------------------------------------------------------</div>
+</main>

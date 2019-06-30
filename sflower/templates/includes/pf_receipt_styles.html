@@ -1,15 +1,17 @@
 <style>
     .print-format table, .print-format tr,
     .print-format td, .print-format div, .print-format p {
-        font-size: 8pt;
-        font-family: Monospace;
-        line-height: 200%;
+        font-size: 9pt;
+        font-family: Arial, sans-serif;
+        line-height: 150%;
         vertical-align: middle;
     }
     @media screen {
         .print-format {
             width: 80mm;
-            padding: 0.25in;
+            padding-top: 10mm;
+            padding-left: 10mm;
+            padding-right: 10mm;
             min-height: 130mm;
         }
     }
@@ -17,6 +19,7 @@
         size: '80mm 80mm';
     }
     .sf-header {
+        letter-spacing: 0.75mm;
         font-size: 12pt !important;
         font-weight: bold;
     }
@@ -27,7 +30,7 @@
         padding: 0 !important;
     }
     .sf-table {
-        margin-top: 0;
+        margin-top: 2.5mm;
     }
     .sf-footer {
         font-size: 12pt !important;
@@ -38,5 +41,12 @@
     }
     .sf-paddingless-top td {
         padding-top: 0 !important;
+    }
+    .sf-row > td {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .sf-row.sf-row-extra > td {
+        padding-left: 7.5mm !important;
     }
 </style>
