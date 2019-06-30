@@ -41,7 +41,8 @@ fixtures = [
                     "Sales Order-sf_recipient_sb",
                     "Sales Order-sf_recipient_name",
                     "Sales Order-sf_recipient_number",
-                    "Sales Order-sf_recipient_address"
+                    "Sales Order-sf_recipient_address",
+                    "Delivery Note Item-sf_extra"
                 ]
             ]
         ]
@@ -53,7 +54,8 @@ fixtures = [
                 "name",
                 "in",
                 [
-                    "Sales Order-order_type-hidden"
+                    "Sales Order-order_type-hidden",
+                    "Delivery Note Item-uom-in_list_view"
                 ]
             ]
         ]
