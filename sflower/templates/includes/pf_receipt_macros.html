@@ -3,3 +3,26 @@
 <div>Order: {{ doc.name }}</div>
 <div>--------------------------------------------------------</div>
 {%- endmacro -%}
+
+{%- macro render_telephone_no() -%}
+{{ frappe.db.get_value('SF Settings', 'SF Settings', 'telephone_no') }}
+{%- endmacro -%}
+
+{%- macro render_logo() -%}
+<img src="/assets/sflower/images/sf_logo_arabic_black.png">
+{%- endmacro -%}
+
+{%- macro render_footer() -%}
+<div>--------------------------------------------------------</div>
+<div class="text-center">
+    <div>Thank you for your business!</div>
+    <div>Order online: www.singaporeflw.com</div>
+</div>
+{%- endmacro -%}
+
+{%- macro render_sf_row(name, value) -%}
+<tr class="sf-row">
+    <td>{{ name }}</td>
+    <td class="text-right">{{ value }}</td>
+</tr>
+{%- endmacro -%}
