@@ -1,52 +1,44 @@
+{% from "templates/includes/pf_receipt_macros.html" import render_header, render_footer %}
+
 <main>
-    <img src="/assets/sflower/images/sf_logo_arabic_black.png" />
-    <div class="text-center">
-        <div>TAX INVOICE</div>
-        <div>Tel #: 1774 2456</div>
-        <div>VAT ID: 123456789012345</div>
-    </div>
-    <div>Salesperson: Gwee</div>
-    <div>---------------------------------------</div>
-    <div>Order: {{ doc.name }} {{ doc.transaction_date }}</div>
-    <div>---------------------------------------</div>
-    <div class="text-center">
-        <div class="sf-header">Collection Order</div>
-        <div>Ordered By: {{ doc.customer_name }}</div>
-        <div>Contact: +XXX XXXX XXXX</div>
-        <div>Pick Up: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
-    </div>
-    <div>---------------------------------------</div>
-    <div>
-        <table class="table table-condensed sf-table sf-borderless">
-            {%- for item in doc.items -%}
-            <tr>
-                <td>{{ item.qty|int }} {{ item.description }}</td>
-                <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
-            </tr>
-            {%- endfor -%}
-            <tr>
-                <td>Total Items</td>
-                <td class="text-right">{{ doc.total_qty|int }}</td>
-            </tr>
-            <tr class="sf-paddingless-bottom">
-                <td>Subtotal ({{ doc.currency }})</td>
-                <td class="text-right">{{ frappe.utils.fmt_money(doc.total) }}</td>
-            </tr>
-            <tr class="sf-paddingless-top">
-                <td>VAT 5% Inclusive</td>
-                <td class="text-right">{{ frappe.utils.fmt_money(doc.total_taxes_and_charges) }}</td>
-            </tr>
-            <tr>
-                <td>Payment Inc. VAT</td>
-                <td class="text-right sf-header">
-                    {{ frappe.utils.fmt_money(doc.grand_total) }}
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div>---------------------------------------</div>
-    <div class="text-center">
-        <div>Thank you for your business!</div>
-        <div>Order online: www.singaporeflw.com</div>
-    </div>
+    {{ render_header(doc, 'Tax Invoice') }}
+    <table class="table table-condensed sf-table sf-borderless">
+        {%- for item in doc.items -%}
+        <tr class="sf-row">
+            <td>{{ item.qty|int }} {{ item.description }}</td>
+            <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
+        </tr>
+        {%- endfor -%}
+        <tr>
+            <td>Total Items</td>
+            <td class="text-right">{{ doc.total_qty|int }}</td>
+        </tr>
+        <tr class="sf-paddingless-bottom">
+            <td>Subtotal ({{ doc.currency }})</td>
+            <td class="text-right">{{ frappe.utils.fmt_money(doc.total) }}</td>
+        </tr>
+        <tr class="sf-paddingless-top">
+            <td>VAT 5% Inclusive</td>
+            <td class="text-right">{{ frappe.utils.fmt_money(doc.total_taxes_and_charges) }}</td>
+        </tr>
+        <tr>
+            <td>Payment Inc. VAT</td>
+            <td class="text-right sf-big-text">
+                {{ frappe.utils.fmt_money(doc.grand_total) }}
+            </td>
+        </tr>
+        <tr class="sf-row">
+            <td>Payment ({{ doc.currency }})</td>
+            <td class="text-right">0.000</td>
+        </tr>
+        <tr class="sf-row">
+            <td>Change ({{ doc.currency }})</td>
+            <td class="text-right">0.000</td>
+        </tr>
+        <tr class="sf-row">
+            <td>Balance ({{ doc.currency }})</td>
+            <td class="text-right">0.000</td>
+        </tr>
+    </table>
+    {{ render_footer() }}
 </main>

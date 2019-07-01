@@ -1,3 +1,51 @@
+{%- macro render_header(doc, type) -%}
+<img src="/assets/sflower/images/sf_logo_arabic_black.png">
+<div class="text-center">
+    <div>{{ type|upper }}</div>
+    <div>Tel #: {{ frappe.db.get_value('SF Settings', 'SF Settings', 'telephone_no') }}</div>
+
+    {% if type == 'Tax Invoice' %}
+    <div>VAT ID: {{ frappe.db.get_value('SF Settings', 'SF Settings', 'vat_id') }}</div>
+    {% endif %}
+
+</div>
+
+{% if type == 'Tax Invoice' %}
+    <div>Salesperson: {{ frappe.db.get_value('Employee', doc.sf_sales_person, 'employee_name') }}</div>
+{% endif %}
+
+{{ render_name(doc) }}
+
+{% if not doc.sf_order_type %}
+    <div class="sf-header text-center">Sales Order</div>
+{% else %}
+    {{ render_order_details(doc) }}
+{% endif %}
+
+{%- endmacro -%}
+
+{%- macro render_order_details(doc) -%}
+<div class="text-center">
+    <div class="sf-header">{{ doc.sf_order_type }} Order</div>
+    <div>
+        <div>Ordered By: {{ doc.customer }}</div>
+        <div>Contact: {{ frappe.db.get_value('Customer', doc.customer, 'mobile_no') }}</div>
+        {% if doc.sf_order_type == 'Collection' %}
+        <div>Pick Up: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
+        {% elif doc.sf_order_type == 'Delivery' %}
+        <div>Delivery: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
+        {% endif %}
+    </div>
+    {% if doc.sf_order_type == 'Delivery' %}
+    <div class="sf-header-recipient">
+        <div>Recipient: {{ doc.contact_display }}</div>
+        <div>Contact: {{ doc.contact_mobile }}</div>
+    </div>
+    {% endif %}
+</div>
+<div>--------------------------------------------------------</div>
+{%- endmacro -%}
+
 {%- macro render_name(doc) -%}
 <div>--------------------------------------------------------</div>
 <div>Order: {{ doc.name }}</div>
