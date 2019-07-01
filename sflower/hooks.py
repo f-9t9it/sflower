@@ -42,7 +42,9 @@ fixtures = [
                     "Sales Order-sf_recipient_name",
                     "Sales Order-sf_recipient_number",
                     "Sales Order-sf_recipient_address",
-                    "Delivery Note Item-sf_extra"
+                    "Delivery Note Item-sf_extra",
+                    "Sales Order-sf_sales_person",
+                    "Sales Invoice-sf_sales_person"
                 ]
             ]
         ]
