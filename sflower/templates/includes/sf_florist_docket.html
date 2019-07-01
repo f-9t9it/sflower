@@ -1,0 +1,16 @@
+{% from "templates/includes/pf_receipt_macros.html" import render_name, render_order_details, render_order_status %}
+<main>
+    <div class="text-center">FLORIST DOCKET</div>
+    {{ render_name(doc) }}
+    {{ render_order_details(doc) }}
+    <table class="table table-condensed sf-table sf-borderless">
+        {%- for item in doc.items -%}
+        <tr class="sf-paddingless"><td>Item {{ item.idx }}:</td></tr>
+        <tr class="sf-row">
+            <td>{{ item.qty|int }} {{ item.description }}</td>
+            <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
+        </tr>
+        {%- endfor -%}
+    </table>
+    {{ render_order_status(doc) }}
+</main>

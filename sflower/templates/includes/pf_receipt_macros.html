@@ -24,6 +24,18 @@
 
 {%- endmacro -%}
 
+{%- macro render_order_status(doc) -%}
+<div class="sf-big-text sf-order-status text-center">
+    {% if doc.per_billed == 100 %}
+    ***ORDER PAID***
+    {% elif doc.per_billed == 0 %}
+    ***ORDER UNPAID***
+    {% else %}
+    ***ORDER PARTIALLY PAID***
+    {% endif %}
+</div>
+{%- endmacro -%}
+
 {%- macro render_order_details(doc) -%}
 <div class="text-center">
     <div class="sf-header">{{ doc.sf_order_type }} Order</div>
