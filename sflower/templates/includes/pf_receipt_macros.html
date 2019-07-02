@@ -65,6 +65,11 @@
         <td>{{ item.qty|int }} {{ item.description }}</td>
         <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
     </tr>
+    {% if item.sf_extra %}
+    <tr class="sf-row sf-row-extra">
+        <td>{{ item.sf_extra }}</td>
+    </tr>
+    {% endif %}
     {%- endfor -%}
     <tr>
         <td>Total Items</td>
@@ -84,10 +89,12 @@
             {{ frappe.utils.fmt_money(doc.grand_total) }}
         </td>
     </tr>
+    {%- for payment in doc.payments %}
     <tr class="sf-row">
-        <td>Payment ({{ doc.currency }})</td>
-        <td class="text-right">0.000</td>
+        <td>{{ payment.mode_of_payment }} ({{ doc.currency }})</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(payment.amount) }}</td>
     </tr>
+    {%- endfor -%}
     <tr class="sf-row">
         <td>Change ({{ doc.currency }})</td>
         <td class="text-right">
