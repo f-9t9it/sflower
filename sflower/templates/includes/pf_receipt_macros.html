@@ -43,9 +43,9 @@
         <div>Ordered By: {{ doc.customer }}</div>
         <div>Contact: {{ frappe.db.get_value('Customer', doc.customer, 'mobile_no') }}</div>
         {% if doc.sf_order_type == 'Collection' %}
-        <div>Pick Up: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
+        <div>Pick Up: {{ doc.delivery_date if doc.delivery_date else '' }} {{ doc.sf_delivery_time if doc.sf_delivery_time else 'Shown on S/O' }}</div>
         {% elif doc.sf_order_type == 'Delivery' %}
-        <div>Delivery: {{ doc.delivery_date }} {{ doc.sf_delivery_time }}</div>
+        <div>Delivery: {{ doc.delivery_date if doc.delivery_date else '' }} {{ doc.sf_delivery_time if doc.sf_delivery_time else 'Shown on S/O' }}</div>
         {% endif %}
     </div>
     {% if doc.sf_order_type == 'Delivery' %}
@@ -56,6 +56,51 @@
     {% endif %}
 </div>
 <div>--------------------------------------------------------</div>
+{%- endmacro -%}
+
+{%- macro render_items(doc) -%}
+<table class="table table-condensed sf-table sf-borderless">
+    {%- for item in doc.items -%}
+    <tr class="sf-row">
+        <td>{{ item.qty|int }} {{ item.description }}</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
+    </tr>
+    {%- endfor -%}
+    <tr>
+        <td>Total Items</td>
+        <td class="text-right">{{ doc.total_qty|int }}</td>
+    </tr>
+    <tr class="sf-paddingless-bottom">
+        <td>Subtotal ({{ doc.currency }})</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(doc.total) }}</td>
+    </tr>
+    <tr class="sf-paddingless-top">
+        <td>VAT 5% Inclusive</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(doc.total_taxes_and_charges) }}</td>
+    </tr>
+    <tr>
+        <td>Payment Inc. VAT</td>
+        <td class="text-right sf-big-text">
+            {{ frappe.utils.fmt_money(doc.grand_total) }}
+        </td>
+    </tr>
+    <tr class="sf-row">
+        <td>Payment ({{ doc.currency }})</td>
+        <td class="text-right">0.000</td>
+    </tr>
+    <tr class="sf-row">
+        <td>Change ({{ doc.currency }})</td>
+        <td class="text-right">
+            {{ frappe.utils.fmt_money(doc.change_amount) }}
+        </td>
+    </tr>
+    <tr class="sf-row">
+        <td>Balance ({{ doc.currency }})</td>
+        <td class="text-right">
+            {{ frappe.utils.fmt_money(doc.outstanding_amount) }}
+        </td>
+    </tr>
+</table>
 {%- endmacro -%}
 
 {%- macro render_name(doc) -%}

@@ -33,11 +33,15 @@
         </tr>
         <tr class="sf-row">
             <td>Change ({{ doc.currency }})</td>
-            <td class="text-right">0.000</td>
+            <td class="text-right">
+                {{ frappe.utils.fmt_money(doc.change_amount) }}
+            </td>
         </tr>
         <tr class="sf-row">
             <td>Balance ({{ doc.currency }})</td>
-            <td class="text-right">0.000</td>
+            <td class="text-right">
+                {{ frappe.utils.fmt_money(doc.outstanding_amount) }}
+            </td>
         </tr>
     </table>
     {{ render_footer() }}
