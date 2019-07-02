@@ -58,6 +58,20 @@
 <div>--------------------------------------------------------</div>
 {%- endmacro -%}
 
+{%- macro render_extra(item) -%}
+    {% if item.sf_note %}
+        {% set notes = item.sf_note.split(', ') %}
+        {% for note in notes %}
+            {{ note }}<br>
+        {% endfor %}
+    {% endif %}
+    {% if item.sf_extra == 'No Card' %}
+        *NO CARD*
+    {% elif item.sf_extra != 'No Card' %}
+        Message: {{ item.sf_card }}
+    {% endif %}
+{%- endmacro -%}
+
 {%- macro render_items(doc) -%}
 <table class="table table-condensed sf-table sf-borderless">
     {%- for item in doc.items -%}
@@ -65,7 +79,7 @@
         <td>{{ item.qty|int }} {{ item.description }}</td>
         <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
     </tr>
-    {% if item.sf_extra %}
+    {% if item.sf_extra and item.sf_extra != 'No Card' %}
     <tr class="sf-row sf-row-extra">
         <td>{{ item.sf_extra }}</td>
     </tr>
@@ -98,13 +112,13 @@
     <tr class="sf-row">
         <td>Change ({{ doc.currency }})</td>
         <td class="text-right">
-            {{ frappe.utils.fmt_money(doc.change_amount) }}
+            {{ frappe.utils.fmt_money(doc.change_amount) if doc.change_amount else 'N/A' }}
         </td>
     </tr>
     <tr class="sf-row">
         <td>Balance ({{ doc.currency }})</td>
         <td class="text-right">
-            {{ frappe.utils.fmt_money(doc.outstanding_amount) }}
+            {{ frappe.utils.fmt_money(doc.outstanding_amount) if doc.oustanding_amount is not none else 'N/A' }}
         </td>
     </tr>
 </table>

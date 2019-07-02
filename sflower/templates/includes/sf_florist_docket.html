@@ -1,4 +1,4 @@
-{% from "templates/includes/pf_receipt_macros.html" import render_name, render_order_details, render_order_status %}
+{% from "templates/includes/pf_receipt_macros.html" import render_name, render_order_details, render_order_status, render_extra %}
 <main>
     <div class="text-center">FLORIST DOCKET</div>
     {{ render_name(doc) }}
@@ -9,6 +9,9 @@
         <tr class="sf-row">
             <td>{{ item.qty|int }} {{ item.description }}</td>
             <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
+        </tr>
+        <tr class="sf-row sf-row-extra">
+            <td>{{ render_extra(item) }}</td>
         </tr>
         {%- endfor -%}
     </table>
