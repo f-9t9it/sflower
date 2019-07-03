@@ -20,11 +20,15 @@ fixtures = [
                 "in",
                 [
                     "Sales Invoice Item-sf_extra",
-                    "Sales Invoice-sf_note_1",
-                    "Sales Invoice-sf_card",
+                    "Sales Invoice Item-sf_card",
+                    "Sales Invoice Item-sf_note",
+                    "Sales Invoice Item-sf_note_and_card_cb",
+                    "Sales Invoice Item-sf_note_and_card_sb",
                     "Sales Order Item-sf_extra",
-                    "Sales Order-sf_note_1",
-                    "Sales Order-sf_card",
+                    "Sales Order Item-sf_note",
+                    "Sales Order Item-sf_card",
+                    "Sales Order Item-section_break_6",
+                    "Sales Order Item-column_break_8",
                     "Sales Invoice-sf_order_type",
                     "Sales Order-sf_delivery_time",
                     "Quotation-sf_occasion",
@@ -36,7 +40,15 @@ fixtures = [
                     "Quotation-sf_quotation_description",
                     "Quotation-sf_sales_type",
                     "Sales Order-sf_sales_type",
-                    "Sales Invoice-sf_sales_type"
+                    "Sales Invoice-sf_sales_type",
+                    "Sales Order-sf_order_type",
+                    "Sales Order-sf_recipient_sb",
+                    "Sales Order-sf_recipient_name",
+                    "Sales Order-sf_recipient_number",
+                    "Sales Order-sf_recipient_address",
+                    "Delivery Note Item-sf_extra",
+                    "Sales Order-sf_sales_person",
+                    "Sales Invoice-sf_sales_person"
                 ]
             ]
         ]
@@ -48,7 +60,8 @@ fixtures = [
                 "name",
                 "in",
                 [
-                    "Sales Order-order_type-options"
+                    "Sales Order-order_type-hidden",
+                    "Delivery Note Item-uom-in_list_view"
                 ]
             ]
         ]

@@ -1,0 +1,154 @@
+{%- macro render_header(doc, type) -%}
+<img src="/assets/sflower/images/sf_logo_arabic_black.png">
+<div class="text-center">
+    <div>{{ type|upper }}</div>
+    <div>Tel #: {{ frappe.db.get_value('SF Settings', 'SF Settings', 'telephone_no') }}</div>
+
+    {% if type == 'Tax Invoice' %}
+    <div>VAT ID: {{ frappe.db.get_value('SF Settings', 'SF Settings', 'vat_id') }}</div>
+    {% endif %}
+
+</div>
+
+{% if type == 'Tax Invoice' %}
+    <div>Salesperson: {{ frappe.db.get_value('Employee', doc.sf_sales_person, 'employee_name') }}</div>
+{% endif %}
+
+{{ render_name(doc) }}
+
+{% if not doc.sf_order_type %}
+    <div class="sf-header text-center">Sales Order</div>
+{% else %}
+    {{ render_order_details(doc) }}
+{% endif %}
+
+{%- endmacro -%}
+
+{%- macro render_order_status(doc) -%}
+<div class="sf-big-text sf-order-status text-center">
+    {% if doc.per_billed == 100 %}
+    ***ORDER PAID***
+    {% elif doc.per_billed == 0 %}
+    ***ORDER UNPAID***
+    {% else %}
+    ***ORDER PARTIALLY PAID***
+    {% endif %}
+</div>
+{%- endmacro -%}
+
+{%- macro render_order_details(doc) -%}
+<div class="text-center">
+    <div class="sf-header">{{ doc.sf_order_type }} Order</div>
+    <div>
+        <div>Ordered By: {{ doc.customer }}</div>
+        <div>Contact: {{ frappe.db.get_value('Customer', doc.customer, 'mobile_no') }}</div>
+        {% if doc.sf_order_type == 'Collection' %}
+        <div>Pick Up: {{ doc.delivery_date if doc.delivery_date else '' }} {{ doc.sf_delivery_time if doc.sf_delivery_time else 'Shown on S/O' }}</div>
+        {% elif doc.sf_order_type == 'Delivery' %}
+        <div>Delivery: {{ doc.delivery_date if doc.delivery_date else '' }} {{ doc.sf_delivery_time if doc.sf_delivery_time else 'Shown on S/O' }}</div>
+        {% endif %}
+    </div>
+    {% if doc.sf_order_type == 'Delivery' %}
+    <div class="sf-header-recipient">
+        <div>Recipient: {{ doc.contact_display }}</div>
+        <div>Contact: {{ doc.contact_mobile }}</div>
+    </div>
+    {% endif %}
+</div>
+<div>--------------------------------------------------------</div>
+{%- endmacro -%}
+
+{%- macro render_extra(item) -%}
+    {% if item.sf_note %}
+        {% set notes = item.sf_note.split(', ') %}
+        {% for note in notes %}
+            {{ note }}<br>
+        {% endfor %}
+    {% endif %}
+    {% if item.sf_extra == 'No Card' %}
+        *NO CARD*
+    {% elif item.sf_extra != 'No Card' %}
+        Message: {{ item.sf_card }}
+    {% endif %}
+{%- endmacro -%}
+
+{%- macro render_items(doc) -%}
+<table class="table table-condensed sf-table sf-borderless">
+    {%- for item in doc.items -%}
+    <tr class="sf-row">
+        <td>{{ item.qty|int }} {{ item.description }}</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(item.rate) }}</td>
+    </tr>
+    {% if item.sf_extra and item.sf_extra != 'No Card' %}
+    <tr class="sf-row sf-row-extra">
+        <td>{{ item.sf_extra }}</td>
+    </tr>
+    {% endif %}
+    {%- endfor -%}
+    <tr>
+        <td>Total Items</td>
+        <td class="text-right">{{ doc.total_qty|int }}</td>
+    </tr>
+    <tr class="sf-paddingless-bottom">
+        <td>Subtotal ({{ doc.currency }})</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(doc.total) }}</td>
+    </tr>
+    <tr class="sf-paddingless-top">
+        <td>VAT 5% Inclusive</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(doc.total_taxes_and_charges) }}</td>
+    </tr>
+    <tr>
+        <td>Payment Inc. VAT</td>
+        <td class="text-right sf-big-text">
+            {{ frappe.utils.fmt_money(doc.grand_total) }}
+        </td>
+    </tr>
+    {%- for payment in doc.payments %}
+    <tr class="sf-row">
+        <td>{{ payment.mode_of_payment }} ({{ doc.currency }})</td>
+        <td class="text-right">{{ frappe.utils.fmt_money(payment.amount) }}</td>
+    </tr>
+    {%- endfor -%}
+    <tr class="sf-row">
+        <td>Change ({{ doc.currency }})</td>
+        <td class="text-right">
+            {{ frappe.utils.fmt_money(doc.change_amount) if doc.change_amount else 'N/A' }}
+        </td>
+    </tr>
+    <tr class="sf-row">
+        <td>Balance ({{ doc.currency }})</td>
+        <td class="text-right">
+            {{ frappe.utils.fmt_money(doc.outstanding_amount) if doc.oustanding_amount is not none else 'N/A' }}
+        </td>
+    </tr>
+</table>
+{%- endmacro -%}
+
+{%- macro render_name(doc) -%}
+<div>--------------------------------------------------------</div>
+<div>Order: {{ doc.name }}</div>
+<div>--------------------------------------------------------</div>
+{%- endmacro -%}
+
+{%- macro render_telephone_no() -%}
+{{ frappe.db.get_value('SF Settings', 'SF Settings', 'telephone_no') }}
+{%- endmacro -%}
+
+{%- macro render_logo() -%}
+<img src="/assets/sflower/images/sf_logo_arabic_black.png">
+{%- endmacro -%}
+
+{%- macro render_footer() -%}
+<div>--------------------------------------------------------</div>
+<div class="text-center">
+    <div>Thank you for your business!</div>
+    <div>Order online: www.singaporeflw.com</div>
+</div>
+{%- endmacro -%}
+
+{%- macro render_sf_row(name, value) -%}
+<tr class="sf-row">
+    <td>{{ name }}</td>
+    <td class="text-right">{{ value }}</td>
+</tr>
+{%- endmacro -%}

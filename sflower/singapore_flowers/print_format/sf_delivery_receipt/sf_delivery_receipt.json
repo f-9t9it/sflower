@@ -1,0 +1,23 @@
+{
+ "align_labels_right": 0, 
+ "creation": "2019-06-30 16:29:34.129167", 
+ "custom_format": 1, 
+ "default_print_language": "en", 
+ "disabled": 0, 
+ "doc_type": "Delivery Note", 
+ "docstatus": 0, 
+ "doctype": "Print Format", 
+ "font": "Default", 
+ "html": "{% include \"templates/includes/pf_receipt_styles.html\" %}\n{% include \"templates/includes/sf_delivery_receipt.html\" %}", 
+ "idx": 0, 
+ "line_breaks": 0, 
+ "modified": "2019-06-30 17:46:30.328262", 
+ "modified_by": "iraltomera@bai.ph", 
+ "module": "Singapore Flowers", 
+ "name": "SF Delivery Receipt", 
+ "owner": "iraltomera@bai.ph", 
+ "print_format_builder": 0, 
+ "print_format_type": "Server", 
+ "show_section_headings": 0, 
+ "standard": "Yes"
+}

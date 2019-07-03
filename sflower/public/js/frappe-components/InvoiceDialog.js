@@ -1,3 +1,12 @@
+function _generate_pfs(pf) {
+    return {
+        fieldtype: 'Check',
+        fieldname: pf,
+        label: __(pf),
+        default: 1
+    };
+};
+
 export default class InvoiceDialog {
     constructor(pos_mop, print_formats = []) {
         this.mode_of_payments = [
@@ -7,6 +16,16 @@ export default class InvoiceDialog {
         this.dialog = new frappe.ui.Dialog({
             title: 'Invoice & Print',
             fields: [
+                {
+                    fieldname: 'make_payment',
+                    fieldtype: 'Check',
+                    label: __('Make Payment'),
+                    default: 1,
+                    onchange: function(e) {
+                        const make_payment = this.dialog.get_value('make_payment');
+                        this.dialog.set_df_property('payments', 'hidden', !make_payment);
+                    }.bind(this)
+                },
                 {
                     fieldname: 'payments',
                     fieldtype: 'Table',
@@ -28,7 +47,13 @@ export default class InvoiceDialog {
                     in_place_edit: true,
                     data: this.mode_of_payments,
                     get_data: () => this.mode_of_payments
-                }
+                },
+                {
+                    fieldname: 'print_sb',
+                    fieldtype: 'Section Break',
+                    label: __('Print Formats')
+                },
+                ...this.print_formats.map(_generate_pfs)
             ]
         });
     }

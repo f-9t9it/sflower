@@ -1,0 +1,7 @@
+{% from "templates/includes/pf_receipt_macros.html" import render_header, render_items, render_footer %}
+
+<main>
+    {{ render_header(doc, 'Tax Invoice') }}
+    {{ render_items(doc) }}
+    {{ render_footer() }}
+</main>

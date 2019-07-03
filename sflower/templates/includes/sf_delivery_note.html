@@ -1,0 +1,27 @@
+{%- from "templates/includes/pf_receipt_macros.html" import render_name, render_telephone_no, render_logo, render_footer, render_sf_row -%}
+
+<main>
+    {{ render_logo() }}
+    <div class="text-center">
+        <div>DELIVERY NOTE</div>
+        <div>Tel #: {{ render_telephone_no() }}</div>
+    </div>
+    {{ render_name(doc) }}
+    <div class="sf-header text-center">Delivery Details</div>
+    <table class="table table-condensed sf-table sf-borderless">
+        {%- for item in doc.items -%}
+        <tr class="sf-row"><td>{{ item.qty|int }} {{ item.description }}</td></tr>
+        <tr class="sf-row sf-row-extra"><td>{{ item.sf_extra }}</td></tr>
+        {%- endfor -%}
+        <tr><td>Total Items</td><td>{{ doc.items|length }}</td></tr>
+    </table>
+    <div>--------------------------------------------------------</div>
+    <table class="table table-condensed sf-table sf-borderless">
+        {{ render_sf_row('Recipient:', doc.customer) }}
+        {{ render_sf_row('Contact:', '') }}
+        {{ render_sf_row('Delivery:', '') }}
+        {{ render_sf_row('Address:', '') }}
+        {{ render_sf_row('Notes:', '') }}
+    </table>
+    {{ render_footer() }}
+</main>
